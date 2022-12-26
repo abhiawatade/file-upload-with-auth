@@ -13,6 +13,10 @@ app.use(express.static("Content"));
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/product", productRoutes);
 
+app.get("/", async (_req, res) => {
+  return res.status(200).send("API works");
+});
+
 app.listen(port, () => {
   console.log("server listening on port");
   connectDB();

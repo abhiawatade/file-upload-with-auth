@@ -38,4 +38,12 @@ const isSeller = (req, res, next) => {
   }
 };
 
-module.exports = { isAuthenticated, isSeller };
+const isBuyer = (req, res, next) => {
+  if (!req.user.dataValues.isSeller) {
+    next();
+  } else {
+    res.status(401).json({ err: "You are not a buyer" });
+  }
+};
+
+module.exports = { isAuthenticated, isSeller, isBuyer };
